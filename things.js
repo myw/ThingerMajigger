@@ -2,14 +2,15 @@ $(function () {
     var main_list$,
         things_data$,
         filters,
-        NEXT_FOCUS = 128;
+        NEXT_FOCUS = 128,
+        INBOX_FOCUS = 103;
 
     // Return a specific attribute value from a todo object
     function get_attr(thing_todo$, attr_name) {
         var attr;
 
         attr = thing_todo$.find('attribute[name="'+attr_name+'"]');
-        if (attr.attr('type').match(/int/)) {
+        if (attr.attr('type') && attr.attr('type').match(/int/)) {
             attr = parseInt(attr.text());
         } else {
             attr = attr.text();
@@ -59,19 +60,24 @@ $(function () {
     };
 
     filters = {
+        inbox: function (thing_todo$) {
+            return get_relationship(thing_todo$, 'focus').indexOf(INBOX_FOCUS) >=0;
+        },
         today: function (thing_todo$) {
             return get_attr(thing_todo$, 'focustype') === 65536;
         },
         next: function (thing_todo$) {
             return get_relationship(thing_todo$, 'focus').indexOf(NEXT_FOCUS) >=0;
+        },
+        someday: function (thing_todo$) {
+            return get_attr(thing_todo$, 'focustype') === 65536;
         }
     }
 
     function create_content(data) {
         main_list$ = $('#main-list');
         things_data$ = $(data);
-        main_list_show(filters.today);
-        main_list_show(filters.next);
+		main_list_show(filters.inbox);
     };
 
     function main() {
