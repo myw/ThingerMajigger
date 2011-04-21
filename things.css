@@ -1,8 +1,44 @@
 
-#lists-list {
-    float: left;
-}
-
 ul li {
     list-style: none;
+}
+ul li input {
+	margin-right: 2ex;
+	margin-left: 1ex;
+	height: 8pt;
+}
+
+#container {
+	font-family: "Lucida Grande";
+	font-size: 8pt;
+}
+#lists-pane {
+    float: left;
+	height: 100%;
+	width: 12%;
+	background: #d6dde5;
+	margin-right: 4ex;
+	/*background: #e8e8e8;*/
+}
+#content-pane {
+	height: 100%;
+	background: #a8acb5;
+	margin-left: 12%;
+}
+#content-pane li {
+	background: #fcfcfc;
+	margin-right: 4ex;
+	border-radius: 4px;
+	margin-left: 4ex;
+	border: 1px solid gray;
+}
+
+#main-list {
+	padding-top: 1em;
+	line-height: 20pt;
+}
+#lists-list {
+	padding-left: 4ex;
+	padding-top: 1em;
+	line-height: 18pt;
 }
