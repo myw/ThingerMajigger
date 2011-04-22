@@ -27,6 +27,9 @@ only a few hours of work.
 
 I hope to add the ability to do more than just observe soon.
 
+### Requirements
+This project currently uses jQuery 1.5.2 and the meyerweb.com CSS reset.
+
 ### MIT License
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
