@@ -101,8 +101,8 @@ $(function () {
         }
 
         NEXT_FOCUS = load_constant('FocusNextActions');
-        INBOX_FOCUS = load_constant('FocusMaybe');
-        SOMEDAY_FOCUS = load_constant('FocusInbox'); 
+        INBOX_FOCUS = load_constant('FocusInbox');
+        SOMEDAY_FOCUS = load_constant('FocusMaybe'); 
     }
 
     function make_lists() {
