@@ -1,9 +1,10 @@
 $(function () {
-    var main_list$,
-        things_data$,
+    var things_data$,
         filters,
+        lists$ = {}, 
         NEXT_FOCUS = 128,
-        INBOX_FOCUS = 103;
+        INBOX_FOCUS = 103,
+        SOMEDAY_FOCUS = 125;
 
     // Return a specific attribute value from a todo object
     function get_attr(thing_todo$, attr_name) {
@@ -36,10 +37,13 @@ $(function () {
         return refs;
     }
 
-    function main_list_show(filter) {
-        main_list$.empty();
+    function make_list(filter_name) {
+        var filter = filters[filter_name],
+            list$ = $('<ul id="' +filter_name +'-list" class="todo-list hidden"></ul>');
+
         things_data$.find('object[type="TODO"]').each(function () {
             var checkbox$;
+			var item$;
 
             if (filter($(this))) {
                 checkbox$ = $('<input type="checkbox" />')
@@ -51,12 +55,17 @@ $(function () {
                     checkbox$.attr('checked', 'checked');
                 }
 
-                $('<li></li>')
+                item = $('<li></li>')
                     .append(checkbox$)
                     .append(get_attr($(this), 'title'))
-                    .appendTo(main_list$);
+                    .appendTo(list$);
+				if (filters.today($(this))) {
+					item.addClass('today');
+				}
             }
         });
+
+        return list$;
     };
 
     filters = {
@@ -70,14 +79,47 @@ $(function () {
             return get_relationship(thing_todo$, 'focus').indexOf(NEXT_FOCUS) >=0;
         },
         someday: function (thing_todo$) {
-            return get_attr(thing_todo$, 'focustype') === 65536;
+            return get_relationship(thing_todo$, 'focus').indexOf(SOMEDAY_FOCUS) >=0;
         }
     }
 
+    function hide_lislistts() {
+        for (lx in lists$) {
+            lists$[lx].addClass('hidden');
+        }
+    }
+
+    function make_lists() {
+        $('#lists-list a').each(function () {
+            var name,
+                list$;
+            
+            name = $(this).parent().attr('id').replace(/show-/, '');
+            list$ = make_list(name);
+            $('#content-pane').append(list$);
+            lists$[name] = list$;
+
+            $(this).click(function (event) {
+                event.preventDefault();
+                // Hide other lists, remove "selected" marker from list names
+                $('#lists-list li').each(function () {
+                    var name;
+
+                    name = $(this).attr('id').replace(/show-/, '');
+                    lists$[name].addClass('hidden');
+                    $(this).removeClass('selected');
+                });
+
+                $(this).parents('li').addClass('selected');
+                list$.removeClass('hidden');
+            });
+        });
+		$('#show-today a').click();
+    }
+
     function create_content(data) {
-        main_list$ = $('#main-list');
         things_data$ = $(data);
-		main_list_show(filters.inbox);
+        make_lists();
     };
 
     function main() {
