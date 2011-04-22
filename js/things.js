@@ -140,7 +140,7 @@ $(function () {
     };
 
     function main() {
-        $.get('Database.xml',
+        $.get('data/Database.xml',
             function(data) {
                 create_content(data);
             });
