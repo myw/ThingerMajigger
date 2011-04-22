@@ -2,9 +2,9 @@ $(function () {
     var things_data$,
         filters,
         lists$ = {}, 
-        NEXT_FOCUS = 128,
-        INBOX_FOCUS = 103,
-        SOMEDAY_FOCUS = 125;
+        NEXT_FOCUS,
+        INBOX_FOCUS,
+        SOMEDAY_FOCUS;
 
     // Return a specific attribute value from a todo object
     function get_attr(thing_todo$, attr_name) {
@@ -43,7 +43,7 @@ $(function () {
 
         things_data$.find('object[type="TODO"]').each(function () {
             var checkbox$;
-			var item$;
+            var item$;
 
             if (filter($(this))) {
                 checkbox$ = $('<input type="checkbox" />')
@@ -59,9 +59,9 @@ $(function () {
                     .append(checkbox$)
                     .append(get_attr($(this), 'title'))
                     .appendTo(list$);
-				if (filters.today($(this))) {
-					item.addClass('today');
-				}
+                if (filters.today($(this))) {
+                    item.addClass('today');
+                }
             }
         });
 
@@ -89,6 +89,22 @@ $(function () {
         }
     }
 
+    function load_constants() {
+        function load_constant(key) {
+            return parseInt(
+                things_data$.find('object[type="FOCUS"] ' +
+                                  'attribute[name="identifier"]:contains(' +
+                                  key + ')')
+                            .parent()
+                            .attr('id')
+                            .replace('z', ''));
+        }
+
+        NEXT_FOCUS = load_constant('FocusNextActions');
+        INBOX_FOCUS = load_constant('FocusMaybe');
+        SOMEDAY_FOCUS = load_constant('FocusInbox'); 
+    }
+
     function make_lists() {
         $('#lists-list a').each(function () {
             var name,
@@ -114,11 +130,12 @@ $(function () {
                 list$.removeClass('hidden');
             });
         });
-		$('#show-today a').click();
+        $('#show-today a').click();
     }
 
     function create_content(data) {
         things_data$ = $(data);
+        load_constants();
         make_lists();
     };
 
