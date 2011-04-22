@@ -18,19 +18,19 @@ ul li input {
 #lists-pane {
     float: left;
 	height: 100%;
-	width: 12%;
+	width: 100px;
 	background: #d6dde5;
-	margin-right: 4ex;
 	/*background: #e8e8e8;*/
 }
 #content-pane {
 	height: 100%;
 	background: #a8acb5;
-	margin-left: 12%;
+	overflow: auto;
 }
 
 ul.todo-list {
 	padding-top: 1em;
+	padding-bottom: 1em;
 	line-height: 20pt;
 }
 ul.todo-list li {
