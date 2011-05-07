@@ -3,8 +3,6 @@ ThingerMajigger
 
 _An easy way to view your Things database when you're away_
 
-Copyright 2011, Mikhail Wolfson
-
 ### Things
 
 [Things][0] is a great GTD to-do list app for the Mac. Unfortunately, some of
@@ -50,6 +48,17 @@ As Cultured Code has told me, Things will eventually move to an SQLite database,
 which will require a WebKit-based browser (or maybe Google Gears) to read.
 
 ### MIT License
+Copyright (c) 2011 Mikhail Wolfson
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
