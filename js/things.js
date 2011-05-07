@@ -1,4 +1,5 @@
-$(function () {
+$(function () {// Package scope
+
     var things_data$,
         filters,
         lists$ = {}, 
@@ -140,7 +141,7 @@ $(function () {
     };
 
     function main() {
-        $.get('data/Database.xml',
+        $.get('../Database.xml',
             function(data) {
                 create_content(data);
             });
