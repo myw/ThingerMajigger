@@ -14,7 +14,7 @@ database (which holds all of the necessary information) remotely.
 ### Usage
 If you want to try it out, first find an appropriately accessible location for
 your Things folder (`~/Library/Application Support/Cultured Code/Things/`), for
-example your Dropbox, or the folder that corresponds some local server on your
+example your Dropbox, or the folder that corresponds to some local server on your
 machine. Quit Things, move your Things folder there, and make a symbolic link
 from the new location of the Things folder to its original location. Finally,
 `git clone` (or just copy) your repo of ThingerMajigger into a _first-level
@@ -28,11 +28,22 @@ An example may look something like this:
 	cd ~/Public/Things
 	git clone ~/Projects/ThingerMajigger ./html
 
-The code knows to look for the `Database.xml` file in the directory above it and does not change anything in the file, so it's completely safe. 
+The code knows to look for the `Database.xml` file in the directory above it
+and does not change anything in the file, so it's completely safe. However,
+the code uses `XMLHttpRequest` to load the file, so it will require explicit
+permission from the user in certain browsers, because accessing arbitrary
+locations on the filesystem with `XHR` tends to be outside the bounds of the
+strict JavaScript sandbox.
 
-This is currently in an incredibly alpha phase. If it doesn't work for you, let
-me know: I'm keen on improving it, as at this point, it's the result of literally
-only a few hours of work.
+* In Chrome/Chromium: Run the program with the `--allow-file-access-from-files`
+  comand line option.
+* In Firefox: The script makes an explicit request for escalated permissions.
+  Accept this request.
+* In Safari: Seems to just work.
+
+This code is currently in an incredibly alpha phase. If it doesn't work for
+you, let me know: I'm keen on improving it, as at this point, it's the result
+of literally only a few hours of work.
 
 I hope to add the ability to do more than just observe soon, but this will
 likely increase the dependencies severely, since plain old browser JavaScript
