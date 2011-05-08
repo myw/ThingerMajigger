@@ -5,7 +5,27 @@ $(function () {// Package scope
         lists$ = {}, 
         NEXT_FOCUS,
         INBOX_FOCUS,
-        SOMEDAY_FOCUS;
+        SOMEDAY_FOCUS,
+        DEBUG = true;
+
+    // Debug utilities
+    dbg = (function () {
+        function _mk_dbg(mode) { 
+            return (function (msg) { if (DEBUG) { console[mode](msg); } }); 
+        }
+
+        var the_dbg = {},
+            dbg_types = ['log', 'warn', 'error'],
+            ix, dt;
+
+        for (ix = 0; ix < dbg_types.length; ix++) {
+            dt = dbg_types[ix];
+            the_dbg[dt] = _mk_dbg(dt);
+        }
+
+        return the_dbg;
+    })();
+
 
     // Return a specific attribute value from a todo object
     function get_attr(thing_todo$, attr_name) {
@@ -135,6 +155,7 @@ $(function () {// Package scope
     }
 
     function create_content(data) {
+        dbg.log('creating content');
         things_data$ = $(data);
         load_constants();
         make_lists();
@@ -146,6 +167,7 @@ $(function () {// Package scope
                 create_content(data);
             });
     };
+        dbg.log('done');
 
     main();
 });
