@@ -67,7 +67,7 @@ $(function () {// Package scope
         });
 
         return list$;
-    };
+    }
 
     filters = {
         inbox: function (thing_todo$) {
@@ -84,7 +84,7 @@ $(function () {// Package scope
         }
     }
 
-    function hide_lislistts() {
+    function hide_lists() {
         for (lx in lists$) {
             lists$[lx].hide();
         }
@@ -138,7 +138,7 @@ $(function () {// Package scope
         things_data$ = $(data);
         load_constants();
         make_lists();
-    };
+    }
 
     function main() {
         $.get('../Database.xml',
