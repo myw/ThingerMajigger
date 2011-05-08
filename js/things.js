@@ -162,12 +162,24 @@ $(function () {// Package scope
     }
 
     function main() {
-        $.get('../Database.xml',
-            function(data) {
+        // Allow Firefox et al to access files elsewhere on the filesystem
+        if (typeof(netscape) !== 'undefined' && netscape.security.PrivilegeManager.enablePrivilege) {
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
+        }
+
+        // Pull the database file
+        $.ajax('../Database.xml', {
+            success: function (data) {
+                dbg.log('success');
                 create_content(data);
-            });
-    };
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                dbg.error(errorThrown);
+            },
+            dataType: 'xml'
+        });
         dbg.log('done');
+    }
 
     main();
 });
