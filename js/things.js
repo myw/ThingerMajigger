@@ -13,7 +13,7 @@ $(function () {// Package scope
 
         attr = thing_todo$.find('attribute[name="'+attr_name+'"]');
         if (attr.attr('type') && attr.attr('type').match(/int/)) {
-            attr = parseInt(attr.text());
+            attr = parseInt(attr.text(), 10);
         } else {
             attr = attr.text();
         }
@@ -31,7 +31,7 @@ $(function () {// Package scope
         if (rel.attr('idrefs')) {
             idrefs_list = rel.attr('idrefs').split(/[ ]+/);
             for (idx = 0; idx < idrefs_list.length; idx++) {
-                refs.push(parseInt(idrefs_list[idx].replace('z', '')));
+                refs.push(parseInt(idrefs_list[idx].replace('z', ''), 10));
             }
         }
 
@@ -98,7 +98,7 @@ $(function () {// Package scope
                                   key + ')')
                             .parent()
                             .attr('id')
-                            .replace('z', ''));
+                            .replace('z', ''), 10);
         }
 
         NEXT_FOCUS = load_constant('FocusNextActions');
