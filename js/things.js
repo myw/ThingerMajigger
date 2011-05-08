@@ -86,7 +86,7 @@ $(function () {// Package scope
 
     function hide_lislistts() {
         for (lx in lists$) {
-            lists$[lx].addClass('hidden');
+            lists$[lx].hide();
         }
     }
 
@@ -123,12 +123,12 @@ $(function () {// Package scope
                     var name;
 
                     name = $(this).attr('id').replace(/show-/, '');
-                    lists$[name].addClass('hidden');
+                    lists$[name].hide();
                     $(this).removeClass('selected');
                 });
 
                 $(this).parents('li').addClass('selected');
-                list$.removeClass('hidden');
+                list$.show();
             });
         });
         $('#show-today a').click();
