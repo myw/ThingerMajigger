@@ -1,3 +1,6 @@
+html, body {
+	height: 100%;
+}
 ul li {
     list-style: none;
 }
@@ -14,6 +17,7 @@ ul li input {
 #container {
 	font-family: "Lucida Grande", "Calibri", "Corbel", "Verdana", "Tahoma";
 	font-size: 8pt;
+	height: 100%;
 }
 #lists-pane {
     float: left;
