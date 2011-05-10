@@ -102,11 +102,13 @@ $(function () {// Package scope
         someday: function (thing_todo$) {
             return get_relationship(thing_todo$, 'focus').indexOf(SOMEDAY_FOCUS) >=0;
         }
-    }
+    };
 
     function hide_lists() {
-        for (lx in lists$) {
-            lists$[lx].hide();
+        for (var lx in lists$) {
+            if ('hide' in list$[lx]) {
+                lists$[lx].hide();
+            }
         }
     }
 
