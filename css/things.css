@@ -47,6 +47,9 @@ ul.todo-list li {
 ul.todo-list li.today {
 	background: #fee893;
 }
+ul.todo-list li.logged {
+	background: #c5c9cf;
+}
 
 
 #lists-list {

@@ -105,6 +105,10 @@ $(function () {// Package scope
                 item$.addClass('today');
             }
 
+            if (this.db_attr('status') === 3) {
+                item$.addClass('logged');
+            }
+
             return item$;
         };
 
@@ -179,6 +183,7 @@ $(function () {// Package scope
         foci.next    = CategoryFocus('FocusNextActions');
         foci.inbox   = CategoryFocus('FocusInbox');
         foci.someday = CategoryFocus('FocusMaybe');
+        foci.log     = CategoryFocus('FocusLogbook');
         foci.today   = TodayFocus();
 
         // Load the todos 
