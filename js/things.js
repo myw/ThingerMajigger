@@ -2,7 +2,7 @@ $(function () {// Package scope
 
     var things_data$,
         filters,
-        lists$ = {}, 
+        lists$ = {},
         NEXT_FOCUS,
         INBOX_FOCUS,
         SOMEDAY_FOCUS,
@@ -10,8 +10,8 @@ $(function () {// Package scope
 
     // Debug utilities
     dbg = (function () {
-        function _mk_dbg(mode) { 
-            return (function (msg) { if (DEBUG) { console[mode](msg); } }); 
+        function _mk_dbg(mode) {
+            return (function (msg) { if (DEBUG) { console[mode](msg); } });
         }
 
         var the_dbg = {},
@@ -125,14 +125,14 @@ $(function () {// Package scope
 
         NEXT_FOCUS = load_constant('FocusNextActions');
         INBOX_FOCUS = load_constant('FocusInbox');
-        SOMEDAY_FOCUS = load_constant('FocusMaybe'); 
+        SOMEDAY_FOCUS = load_constant('FocusMaybe');
     }
 
     function make_lists() {
         $('#lists-list a').each(function () {
             var name,
                 list$;
-            
+
             name = $(this).parent().attr('id').replace(/show-/, '');
             list$ = make_list(name);
             $('#content-pane').append(list$);
